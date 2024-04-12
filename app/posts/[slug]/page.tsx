@@ -1,18 +1,8 @@
 import { format, parseISO } from 'date-fns'
 import { allPosts } from 'contentlayer/generated'
-
 import { ChevronLeft } from 'lucide-react'
-
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-
-export function BackButton() {
-  return (
-    <Button variant="outline" size="icon">
-      <ChevronLeft className="h-4 w-4" />
-    </Button>
-  )
-}
 
 export const generateStaticParams = async () => allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
 
@@ -29,7 +19,9 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
   return (
     <article className="mx-auto max-w-xl py-8">
       <Link href="/">
-        <BackButton />
+        <Button variant="outline" size="icon">
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
       </Link>
       <div className="mt-8 mb-8">
         <h1 className="text-3xl font-bold mb-2">{post.title}</h1>
